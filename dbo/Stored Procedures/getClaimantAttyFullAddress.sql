@@ -1,0 +1,12 @@
+﻿
+CREATE PROCEDURE [dbo].[getClaimantAttyFullAddress] 
+	@LicenseNumber int, 
+	@ClaimNumber int
+AS
+BEGIN
+	SET NOCOUNT ON;
+	EXECUTE (
+		'SELECT C_ATTY_ADDRESS, C_ATTY_CITY, C_ATTY_STATE, C_ATTY_ZIP FROM CLAIMS.V_DRS_CORRESPONDENCE WHERE REGISTRATION_NUMBER = ? AND CLAIM_NUMBER = ?',
+		@LicenseNumber, @ClaimNumber)
+	AT ORACLEDB;
+END

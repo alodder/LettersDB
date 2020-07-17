@@ -1,0 +1,13 @@
+﻿CREATE PROCEDURE [dbo].[getClaimantBondCompanyName] 
+	@LicenseNumber int, 
+	@ClaimNumber int
+AS
+BEGIN
+	SET NOCOUNT ON;
+	EXECUTE (
+		'SELECT A.COMPANY_NAME FROM CLAIMS.BOND_COMPANY A JOIN CLAIMS.BOND B '+
+		'ON A.COMPANY_NUMBER=B.COMPANY_NUMBER '+
+		'WHERE B.REGISTRATION_NUMBER = ? AND B.CLAIM_NUMBER = ?',
+		@LicenseNumber, @ClaimNumber)
+	AT ORACLEDB;
+END

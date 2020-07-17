@@ -1,0 +1,12 @@
+﻿
+CREATE PROCEDURE [dbo].[getClaimantFileInfo] 
+	@LicenseNumber int, 
+	@ClaimNumber int
+AS
+BEGIN
+	SET NOCOUNT ON;
+	EXECUTE (
+		'SELECT CLAIMS_EXAMINER, CLAIMS_SPECIALIST FROM CLAIMS.CLAIMS_FILED WHERE REGISTRATION_NUMBER = ? AND CLAIM_NUMBER = ?',
+		@LicenseNumber, @ClaimNumber)
+	AT ORACLEDB;
+END

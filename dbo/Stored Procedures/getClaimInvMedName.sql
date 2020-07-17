@@ -1,0 +1,15 @@
+﻿
+CREATE PROCEDURE [dbo].[getClaimInvMedName] 
+	@LicenseNumber int, 
+	@ClaimNumber int
+AS
+BEGIN
+	SET NOCOUNT ON;
+	EXECUTE (
+		'SELECT MAX(INV_NAME) AS INV_NAME '+
+		'FROM CLAIMS.INVESTIGATION '+
+		'WHERE INV_NAME IS NOT NULL '+
+		'AND REGISTRATION_NUMBER = ? AND CLAIM_NUMBER = ?',
+		@LicenseNumber, @ClaimNumber)
+	AT ORACLEDB;
+END

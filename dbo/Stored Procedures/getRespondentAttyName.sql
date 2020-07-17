@@ -1,0 +1,12 @@
+﻿
+CREATE PROCEDURE [dbo].[getRespondentAttyName] 
+	@LicenseNumber int, 
+	@ClaimNumber int
+AS
+BEGIN
+	SET NOCOUNT ON;
+	EXECUTE (
+		'SELECT R_ATTY_NAME FROM CLAIMS.V_DRS_CORRESPONDENCE WHERE REGISTRATION_NUMBER = ? AND CLAIM_NUMBER = ?',
+		@LicenseNumber, @ClaimNumber)
+	AT ORACLEDB;
+END

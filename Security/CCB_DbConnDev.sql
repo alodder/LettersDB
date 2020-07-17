@@ -1,0 +1,2 @@
+﻿CREATE USER [CCB\DbConnDev] FOR LOGIN [CCB\DbConnDev];
+
